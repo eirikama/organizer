@@ -1,25 +1,27 @@
-# todo (todo)
+# Familyplanner
 
-A Quasar Framework app
+An application for planning purchasing groceries and keeping track of tasks
 
 ## Install the dependencies
 ```bash
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## Install the dependencies and start backend
 ```bash
-quasar dev
+cd backend
+npm install
+npm start
 ```
 
-### Lint the files
+### Start the app in development mode 
 ```bash
-npm run lint
+quasar dev -m pwa
 ```
 
 ### Build the app for production
 ```bash
-quasar build
+quasar build -m pwa
 ```
 
 ### Customize the configuration
