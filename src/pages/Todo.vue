@@ -81,7 +81,7 @@ export default defineComponent({
       this.$q
         .dialog({
           title: "Confirm",
-          message: "Really delete?",
+          message: "Vil du virkelig slette gjøremål?",
           cancel: true,
           persistent: true,
         })
@@ -93,7 +93,7 @@ export default defineComponent({
             .catch((err) => {
               throw new Error("Error: ", err);
             });
-          this.$q.notify("Task deleted");
+          this.$q.notify("Gjøremål slettet");
         });
     },
 
@@ -122,7 +122,7 @@ export default defineComponent({
         })
         .catch((error) => {
           if (!navigator.onLine) {
-            this.$q.notify("Eine Aufgabe würde Offline hinzugefügt");
+            this.$q.notify("Ett gjøremål ble lagt til offline");
             this.$q.loading.hide();
           }
         });

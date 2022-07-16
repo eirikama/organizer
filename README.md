@@ -2,12 +2,12 @@
 
 An application for planning purchasing groceries and keeping track of tasks
 
-## Install the dependencies
+### Install the dependencies
 ```bash
 npm install
 ```
 
-## Install the dependencies and start backend
+### Install the dependencies and start backend
 ```bash
 cd backend
 npm install

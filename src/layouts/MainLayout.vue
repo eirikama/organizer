@@ -229,7 +229,7 @@ export default {
     },
 
     displaySubscribedNotification() {
-      reg.showNotification("Du wirst Push-nachrichten bekommen!");
+      reg.showNotification("Du vil få push-meldinger!");
     },
 
     urlBase64ToUint8Array(base64String) {

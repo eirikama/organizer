@@ -81,7 +81,7 @@ export default defineComponent({
       this.$q
         .dialog({
           title: "Confirm",
-          message: "Really delete?",
+          message: "Vil du virkelig slette innkjøp?",
           cancel: true,
           persistent: true,
         })
@@ -93,7 +93,7 @@ export default defineComponent({
             .catch((err) => {
               throw new Error("PROBLEM: ", err);
             });
-          this.$q.notify("Task deleted");
+          this.$q.notify("Innkjøp slettet");
         });
     },
 
