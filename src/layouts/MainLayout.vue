@@ -96,12 +96,13 @@
             <q-item-section avatar>
               <q-icon name="help" />
             </q-item-section>
-
+<!--
             <q-item-section> Familien </q-item-section>
           </q-item>
         </q-list>
       </q-scroll-area>
 
+-->
       <q-img
         class="absolute-top"
         src="../assets/mountains.jpg"

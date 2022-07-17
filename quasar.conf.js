@@ -6,7 +6,7 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 //
-let API_PRODUCTION = "https://familymagnussen.herokuapp.com";
+let API_PRODUCTION = "https://rabben.herokuapp.com";
 let API_DEV = "http://localhost:3000";
 
 /* eslint-env node */
@@ -69,26 +69,27 @@ module.exports = configure(function (ctx) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-  chainWebpack (chain) {
-      const hashh = '[id].[name].[chunkhash]'
-      chain.output.filename('js/[name]/'+hashh+'.bundle.js')
-      chain.output.chunkFilename('js/[name]/'+hashh+'.chunk.js')
-      chain.plugin('eslint-webpack-plugin')
-        .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
- },
+      chainWebpack(chain) {
+        const hashh = "[id].[name].[chunkhash]";
+        chain.output.filename("js/[name]/" + hashh + ".bundle.js");
+        chain.output.chunkFilename("js/[name]/" + hashh + ".chunk.js");
+        chain
+          .plugin("eslint-webpack-plugin")
+          .use(ESLintPlugin, [{ extensions: ["js", "vue"] }]);
+      },
       //chainWebpack(chain) {
-        //chain
-          //.plugin("eslint-webpack-plugin")
-          //.use(ESLintPlugin, [{ extensions: ["js", "vue"] }]);
+      //chain
+      //.plugin("eslint-webpack-plugin")
+      //.use(ESLintPlugin, [{ extensions: ["js", "vue"] }]);
       //},
       //chainWebpack(chain) {
-        //chain.module
-          //.rule("fonts")
-          //.use("url-loader")
-          //.tap((options) => {
-            //options.name = `fonts/[path][name][hash:8].[ext]`;
-            //return options;
-          //});
+      //chain.module
+      //.rule("fonts")
+      //.use("url-loader")
+      //.tap((options) => {
+      //options.name = `fonts/[path][name][hash:8].[ext]`;
+      //return options;
+      //});
       //},
     },
 

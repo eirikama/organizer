@@ -52,7 +52,7 @@
     </q-list>
     <div v-if="!buys.length" class="no-buys absolute-center">
       <q-icon name="check" size="100px" color="primary" />
-      <div class="text-h5 text-primary text-center">Nichts einzukaufen</div>
+      <div class="text-h5 text-primary text-center">Alt er kjøpt</div>
     </div>
   </q-page>
 </template>
