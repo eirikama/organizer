@@ -1,6 +1,14 @@
 TODO.apk
 TODO_vapidKeys.txt
 
+.firebase/hosting.ZGlzdC9wd2E.cache
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+
+backend/serviceAccountKey.json
+
 .vscode
 
 .DS_Store

@@ -6,7 +6,7 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 //
-let API_PRODUCTION = "https://rabben.herokuapp.com";
+let API_PRODUCTION = "";              // Change this to your prductions backend
 let API_DEV = "http://localhost:3000";
 
 /* eslint-env node */
@@ -46,7 +46,7 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       env: {
-        API: API_PRODUCTION, // API_PRODUCTION | API_DEV
+        API: API_DEV, // API_PRODUCTION | API_DEV
       },
       vueRouterMode: "hash", // available values: 'hash', 'history'
 
