@@ -16,6 +16,13 @@
         </template>
       </q-input>
     </div>
+    <div class="row q-pb-sm q-pr-sm q-pl-sm q-pt-none q-gutter-sm bg-primary">
+      <q-btn size="sm" color="red-4" label="slett alle gjøremål" />
+      <q-space />
+      <q-btn size="sm" color="teal-3" label="ugjort først" />
+      <q-btn size="sm" color="teal-4" label="kronologisk" />
+    </div>
+
     <q-list class="bg-white" separator bordered>
       <q-item
         v-for="(task, index) in tasks"
