@@ -17,7 +17,12 @@
       </q-input>
     </div>
     <div class="row q-pb-sm q-pr-sm q-pl-sm q-pt-none q-gutter-sm bg-primary">
-      <q-btn size="sm" color="red-4" label="slett alle gjøremål" />
+      <q-btn
+        @click="deleteAllTasks()"
+        size="sm"
+        color="red-4"
+        label="slett alle gjøremål"
+      />
       <q-space />
       <q-btn size="sm" color="teal-3" label="ugjort først" />
       <q-btn size="sm" color="teal-4" label="kronologisk" />
@@ -82,6 +87,25 @@ export default defineComponent({
         this.tasks = response.data;
         this.$q.loading.hide();
       });
+    },
+
+    deleteAllTasks() {
+      this.$q
+        .dialog({
+          title: "Confirm",
+          message: "Vil du virkelig slette alle gjøremålene?",
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(() => {
+          this.tasks = [];
+          this.$axios
+            .post(`${process.env.API}/deleteAllTasks?$`)
+            .catch((err) => {
+              throw new Error("Error: ", err);
+            });
+          this.$q.notify("Gjøremålene slettet");
+        });
     },
 
     deleteTask(index) {

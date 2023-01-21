@@ -18,7 +18,12 @@
     </div>
 
     <div class="row q-pb-sm q-pr-sm q-pl-sm q-pt-none q-gutter-sm bg-primary">
-      <q-btn size="sm" color="red-4" label="slett alle innkjøp" />
+      <q-btn
+        @click="deleteAllBuys()"
+        size="sm"
+        color="red-4"
+        label="slett alle innkjøp"
+      />
       <q-space />
       <q-btn size="sm" color="teal-3" label="ikke kjøpt først" />
       <q-btn size="sm" color="teal-4" label="kronologisk" />
@@ -83,6 +88,25 @@ export default defineComponent({
         this.buys = response.data;
         this.$q.loading.hide();
       });
+    },
+
+    deleteAllBuys() {
+      this.$q
+        .dialog({
+          title: "Confirm",
+          message: "Vil du virkelig slette alle innkjøpene?",
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(() => {
+          this.buys = [];
+          this.$axios
+            .post(`${process.env.API}/deleteAllBuys?$`)
+            .catch((err) => {
+              throw new Error("Error: ", err);
+            });
+          this.$q.notify("Innkjøpene slettet");
+        });
     },
 
     deleteBuy(index) {

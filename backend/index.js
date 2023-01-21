@@ -73,6 +73,22 @@ app.post("/createBuy", (request, response) => {
   endpoint - deleteBuy
 */
 
+app.post("/deleteAllBuys", (request, response) => {
+  response.set("Access-Control-Allow-Origin", "*");
+  request.query.id = parseInt(request.query.id);
+  db.collection("buys")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        db.collection("buys").doc(doc.id).delete();
+      });
+    })
+    .catch((error) => {
+      console.log("Error deleting documents: ", error);
+    });
+  //response.send(request.query);
+});
+
 app.post("/deleteBuy", (request, response) => {
   response.set("Access-Control-Allow-Origin", "*");
   request.query.id = parseInt(request.query.id);
@@ -158,6 +174,22 @@ app.post("/deleteTask", (request, response) => {
   request.query.id = parseInt(request.query.id);
   db.collection("tasks")
     .where("id", "==", request.query.id)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        db.collection("tasks").doc(doc.id).delete();
+      });
+    })
+    .catch((error) => {
+      console.log("Error deleting documents: ", error);
+    });
+  //response.send(request.query);
+});
+
+app.post("/deleteAllTasks", (request, response) => {
+  response.set("Access-Control-Allow-Origin", "*");
+  request.query.id = parseInt(request.query.id);
+  db.collection("tasks")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
