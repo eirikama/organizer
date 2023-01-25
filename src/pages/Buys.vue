@@ -16,6 +16,29 @@
         </template>
       </q-input>
     </div>
+
+    <div class="row q-pb-sm q-pr-sm q-pl-sm q-pt-none q-gutter-sm bg-primary">
+      <q-btn
+        @click="deleteAllBuys()"
+        size="sm"
+        color="red-4"
+        label="slett alle innkjøp"
+      />
+      <q-space />
+      <q-btn
+        @click="notDoneBuysFirst"
+        size="sm"
+        color="teal-3"
+        label="ikke kjøpt først"
+      />
+      <q-btn
+        @click="chronologialBuys"
+        size="sm"
+        color="teal-4"
+        label="kronologisk"
+      />
+    </div>
+
     <q-list class="bg-white" separator bordered>
       <q-item
         v-for="(buy, index) in buys"
@@ -75,6 +98,33 @@ export default defineComponent({
         this.buys = response.data;
         this.$q.loading.hide();
       });
+    },
+
+    notDoneBuysFirst() {
+      this.buys = this.buys.sort((a, b) => a.done - b.done);
+    },
+
+    chronologialBuys() {
+      this.buys = this.buys.sort((a, b) => a.id - b.id);
+    },
+
+    deleteAllBuys() {
+      this.$q
+        .dialog({
+          title: "Confirm",
+          message: "Vil du virkelig slette alle innkjøpene?",
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(() => {
+          this.buys = [];
+          this.$axios
+            .post(`${process.env.API}/deleteAllBuys?$`)
+            .catch((err) => {
+              throw new Error("Error: ", err);
+            });
+          this.$q.notify("Innkjøpene slettet");
+        });
     },
 
     deleteBuy(index) {
