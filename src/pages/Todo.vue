@@ -18,14 +18,24 @@
     </div>
     <div class="row q-pb-sm q-pr-sm q-pl-sm q-pt-none q-gutter-sm bg-primary">
       <q-btn
-        @click="deleteAllTasks()"
+        @click="deleteAllTasks"
         size="sm"
         color="red-4"
         label="slett alle gjøremål"
       />
       <q-space />
-      <q-btn size="sm" color="teal-3" label="ugjort først" />
-      <q-btn size="sm" color="teal-4" label="kronologisk" />
+      <q-btn
+        @click="notDoneTasksFirst"
+        size="sm"
+        color="teal-3"
+        label="ugjort først"
+      />
+      <q-btn
+        @click="chronologicalTasks"
+        size="sm"
+        color="teal-4"
+        label="kronologisk"
+      />
     </div>
 
     <q-list class="bg-white" separator bordered>
@@ -89,6 +99,14 @@ export default defineComponent({
       });
     },
 
+    notDoneTasksFirst() {
+      this.tasks = this.tasks.sort((a, b) => a.done - b.done);
+    },
+
+    chronologicalTasks() {
+      this.tasks = this.tasks.sort((a, b) => a.id - b.id);
+    },
+
     deleteAllTasks() {
       this.$q
         .dialog({
@@ -145,16 +163,16 @@ export default defineComponent({
         done: false,
       };
       let newTaskQS = qs.stringify(newTask);
-      console.log(newTaskQS);
       this.$axios
         .post(`${process.env.API}/createTask?${newTaskQS}`)
         .then((_) => {
           this.tasks.push(newTask);
         })
-        .catch((error) => {
+        .catch((err) => {
           if (!navigator.onLine) {
             this.$q.notify("Ett gjøremål ble lagt til offline");
             this.$q.loading.hide();
+            throw new Error("Error: ", err);
           }
         });
       this.$q.loading.hide();

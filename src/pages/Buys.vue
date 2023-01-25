@@ -25,8 +25,18 @@
         label="slett alle innkjøp"
       />
       <q-space />
-      <q-btn size="sm" color="teal-3" label="ikke kjøpt først" />
-      <q-btn size="sm" color="teal-4" label="kronologisk" />
+      <q-btn
+        @click="notDoneBuysFirst"
+        size="sm"
+        color="teal-3"
+        label="ikke kjøpt først"
+      />
+      <q-btn
+        @click="chronologialBuys"
+        size="sm"
+        color="teal-4"
+        label="kronologisk"
+      />
     </div>
 
     <q-list class="bg-white" separator bordered>
@@ -88,6 +98,14 @@ export default defineComponent({
         this.buys = response.data;
         this.$q.loading.hide();
       });
+    },
+
+    notDoneBuysFirst() {
+      this.buys = this.buys.sort((a, b) => a.done - b.done);
+    },
+
+    chronologialBuys() {
+      this.buys = this.buys.sort((a, b) => a.id - b.id);
     },
 
     deleteAllBuys() {
