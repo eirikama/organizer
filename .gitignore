@@ -49,3 +49,5 @@ yarn-error.log*
 *.keystore
 serviceAccountKey.json
 node_modules/
+serviceAccountKey.json
+node_modules/
